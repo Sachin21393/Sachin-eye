@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+        .leftdiv{
+            width: 300px;
+            height: 100vh;
+            background-color: aqua;
+        }
+        .rightdiv{
+           width: 300px;
+            height: 100vh;
+            background-color: aqua;
+        }
+        .pupil{
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            box-shadow: rgba(0,0,0,0.1) 0px 10px 50px;
+        }
+        .eye{
+            width: 250px;
+            height: 250px;
+            background-color: blanchedalmond;
+            border-radius: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: rgb(50,50,93,0.25) 0px 50px 100px -20px;
+            overflow: hidden;
+        }
+        .eyes{
+            width: inherit;
+            height: 300px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .face{
+            width: 600px;
+            height: 550px;
+            background-color: honeydew;
+            border-radius: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+        }
+       /* .center-div{
+           margin-right: 300px;
+       } */
+
+        
+    </style>
+</head>
+<body>
+    <div class="leftdiv">
+
+    </div>
+    <div  class="center-div">
+      
+        <div class="face">
+            <div class="eyes">
+                <div class="eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye">
+                    <div class="pupil"></div>
+                </div>
+            </div>
+            </div>
+        </div> <div class="rightdiv"></div>
+    <!-- </div> -->
+
+    
+    
+
+      
+             
+    
+    <script>
+
+        let pupil=document.getElementsByClassName('pupil');
+        console.log(pupil );
+        let pupilstart=-100;
+        let pupilrange=200;
+let pupilarr=Array.from(pupil);
+
+
+        let mousxsatrt=0;
+        let mouseXEndpoint=window.innerWidth;
+        let currenX=0;
+        let fracvalue=0;
+        // let mousxsatrt=0;
+        let mouseYEndpoint=window.innerHeight;
+        let currenY=0;
+        let fracYvalue=0;
+        let mouseXrange=mouseXEndpoint-mousxsatrt;
+const mousemove=(event)=>{
+    currenX=event.clientX-mousxsatrt;
+    fracvalue=currenX/mouseXrange;
+    // console.log(fracvalue);
+    currenY=event.clientY;
+    fracYvalue=currenY/mouseYEndpoint;
+    // console.log(fracYvalue);
+
+    let pupilXcurrent=pupilstart+(fracvalue*pupilrange);
+    let pupilYcurrent=pupilstart+(fracYvalue*pupilrange);
+
+
+    pupilarr.forEach((currpupil)=> {
+currpupil.style.transform=`translate(${pupilXcurrent}px,${pupilYcurrent}px)`
+    })
+}
+const windowsize=(event)=>{
+    mouseYEndpoint=window.innerHeight;
+    mouseXrange=mouseXEndpoint-mousxsatrt;
+    mouseYEndpoint=window.innerHeight;
+}
+ 
+window.addEventListener('mousemove',mousemove);
+window.addEventListener('resize',windowsize);
+            </script>
+</body>
+</html>
